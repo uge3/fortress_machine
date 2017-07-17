@@ -1,0 +1,46 @@
+bind0:
+  hostname: ubuntu test
+  remote_users:
+    - user0:
+      username: root
+      auth_type: ssh-passwd
+      password: root
+  groups:
+    - test_group
+  user_profiles:
+    - uge3
+    - alex
+
+
+bind1:
+  hostname: server1
+  remote_users:
+    - user1:
+      username: root
+      auth_type: ssh-key
+      #password: 123
+    - user0:
+      username: root
+      auth_type: ssh-passwd
+      password: root
+    - user4:
+      username: calmyan
+      auth_type: ssh-passwd
+      password: yjj
+  groups:
+    - bj_group
+  user_profiles:
+    - uge3
+
+bind2:
+  hostname: server2
+  remote_users:
+    - user1:
+      username: alex
+      auth_type: ssh-passwd
+      password: alex3714
+  groups:
+    - bj_group
+    - sh_group
+  user_profiles:
+    - rain

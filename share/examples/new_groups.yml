@@ -1,0 +1,15 @@
+
+bj_group:
+  user_profiles:
+    - alex
+    - uge3
+
+sh_group:
+  user_profiles:
+    - jack
+    - alex
+    - rain
+    - uge3
+test_group:
+  user_profiles:
+    - uge3
