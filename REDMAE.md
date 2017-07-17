@@ -18,9 +18,6 @@ plj/#程序目录
 |- - -bin/#启动目录
 |      |- - -__init__.py
 |      |- - -start.py#启动
-|      |- - -mag_init.py#系统初始化
-|      |- - -student.py#学员视图启动
-|      |- - -teach_start.py#讲师视图启动
 |
 |- - -conf/#配置目录
 |      |- - -__init__.py

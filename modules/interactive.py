@@ -1,20 +1,4 @@
-# Copyright (C) 2003-2007  Robey Pointer <robeypointer@gmail.com>
-#
-# This file is part of paramiko.
-#
-# Paramiko is free software; you can redistribute it and/or modify it under the
-# terms of the GNU Lesser General Public License as published by the Free
-# Software Foundation; either version 2.1 of the License, or (at your option)
-# any later version.
-#
-# Paramiko is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
-# A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
-# details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with Paramiko; if not, write to the Free Software Foundation, Inc.,
-# 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
+
 
 
 import socket
@@ -41,7 +25,7 @@ def interactive_shell(chan,user_obj,bind_host_obj,cmd_caches,log_recording):
 
 def posix_shell(chan,user_obj,bind_host_obj,cmd_caches,log_recording):
     import select
-    
+
     oldtty = termios.tcgetattr(sys.stdin)
     try:
         tty.setraw(sys.stdin.fileno())
@@ -71,7 +55,7 @@ def posix_shell(chan,user_obj,bind_host_obj,cmd_caches,log_recording):
                 if '\r' != x:
                     cmd +=x
                 else:
-
+    
                     print('cmd->:',cmd)#命令
                     log_item = models.AuditLog(user_id=user_obj.id,
                                           bind_host_id=bind_host_obj.id,
@@ -81,7 +65,7 @@ def posix_shell(chan,user_obj,bind_host_obj,cmd_caches,log_recording):
                                           )
                     cmd_caches.append(log_item)#添加到列表
                     cmd = ''
-
+    
                     if len(cmd_caches)>=10:#每十条写入日志
                         log_recording(user_obj,bind_host_obj,cmd_caches)
                         cmd_caches = []
@@ -90,17 +74,17 @@ def posix_shell(chan,user_obj,bind_host_obj,cmd_caches,log_recording):
                 if len(x) == 0:
                     break
                 chan.send(x)#发送命令
-
+    
     finally:
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, oldtty)
 
-    
+
 # thanks to Mike Looijmans for this code
 def windows_shell(chan):
     import threading
 
     sys.stdout.write("Line-buffered terminal emulation. Press F6 or ^Z to send EOF.\r\n\r\n")
-        
+
     def writeall(sock):
         while True:
             data = sock.recv(256)
